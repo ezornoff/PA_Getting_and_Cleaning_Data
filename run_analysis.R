@@ -82,7 +82,7 @@ for (i in (2:10297)) { # i is the line of the list
 
 }
 rm("temp") # releasing memory
-rm("Xdata")
+rm("Xdata") # releasing memory
 Xsplit = as.data.frame(Xsplit)
 
 library(plyr)
@@ -101,6 +101,10 @@ data = left_join(data, activities, by = "activity")
 data = data %>% relocate(`activity description`, .after = activity) %>% 
         select(-activity)
 
+print(head(data))
+
 # creating the new data frame with the mean for each combination of subject and activity 
 # and each variable
 dataSum = data %>% group_by(subject, `activity description`) %>% summarise_all(mean)
+
+print(head(dataSum))
